@@ -6,7 +6,13 @@
 #define KGRN "\x1B[32m"
 
 double f(double F(double), double x) {
-    return 0.0;
+    double h = sqrt(__DBL_EPSILON__);
+    double xph = x + h;
+    double xmh = x - h;
+    double dx = xph - xmh;
+    double slope = (F(xph) - F(xmh)) / dx;
+
+    return slope;
 }
 
 void test_sin() {
